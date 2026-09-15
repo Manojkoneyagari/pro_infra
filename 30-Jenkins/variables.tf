@@ -1,0 +1,26 @@
+variable "project" {
+  type    = string
+  default = "Roboshop"
+}
+
+variable "environment" {
+  type = string
+}
+
+variable "domain" {
+
+  default = "devopsprac.site"
+}
+
+variable "zone_id" {
+
+  default = "Z06258901EW9YC41C2I2G"
+}
+
+variable "instance_type_jenkins" {
+
+}
+
+variable "instance_type_jenkins_agent" {
+
+}
