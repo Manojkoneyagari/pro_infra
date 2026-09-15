@@ -79,6 +79,7 @@ pipeline {
                             echo "Layer       : ${layer}"
                             echo "Environment : ${params.ENVIRONMENT}"
                             echo "=========================================="
+                        withAWS(credentials: 'aws-creds', region: "${AWS_REGION}") {
 
                             sh """
                                 terraform init -input=false
@@ -89,6 +90,7 @@ pipeline {
                                 echo "Current Terraform workspace:"
                                 terraform workspace show
                             """
+                        }
 
                             
                         }
@@ -164,7 +166,8 @@ pipeline {
                             echo "Planning ${layer} for ${params.ENVIRONMENT}"
 
                             if (fileExists("${params.ENVIRONMENT}.tfvars")) {
-
+                                
+                                withAWS(credentials: 'aws-creds', region: "${AWS_REGION}") {
                                 sh """
                                     terraform plan \
                                     -input=false \
@@ -175,6 +178,7 @@ pipeline {
                                     -no-color tfplan \
                                     > tfplan.txt
                                 """
+                                }
 
                             } else {
 
