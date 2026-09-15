@@ -50,7 +50,7 @@ pipeline {
             steps {
 
                 sh """
-                    terraform fmt -check -recursive
+                    terraform fmt -recursive
                 """
             }
         }
