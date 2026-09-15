@@ -82,7 +82,8 @@ pipeline {
                         withAWS(credentials: 'aws-creds', region: "${AWS_REGION}") {
 
                             sh """
-                                terraform init -input=false
+                                terraform init -reconfigure -input=false
+                        
 
                                 terraform workspace select -or-create ${params.ENVIRONMENT}
 
