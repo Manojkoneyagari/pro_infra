@@ -84,8 +84,7 @@ pipeline {
                             sh """
                                 terraform init -input=false
 
-                                terraform workspace select ${params.ENVIRONMENT} || \
-                                terraform workspace new ${params.ENVIRONMENT}
+                                terraform workspace select -or-create ${params.ENVIRONMENT}
 
                                 echo "Current Terraform workspace:"
                                 terraform workspace show
